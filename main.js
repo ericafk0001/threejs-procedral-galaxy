@@ -170,10 +170,6 @@ initThree();
 let axes = new THREE.AxesHelper(5.0);
 scene.add(axes);
 
-const gridHelper = new THREE.GridHelper(100, 50);
-gridHelper.rotateX(Math.PI / 2);
-scene.add(gridHelper);
-
 let position = new THREE.Vector3(5.0, 5.0, 5.0);
 let star = new Star(position);
 star.toThreeObject(scene);
