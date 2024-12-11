@@ -19,6 +19,18 @@ import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js"
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
 
 import { Star } from "./star.js";
+import {
+  ARMS,
+  ARM_X_DIST,
+  ARM_X_MEAN,
+  ARM_Y_DIST,
+  ARM_Y_MEAN,
+  CORE_X_DIST,
+  CORE_Y_DIST,
+  GALAXY_THICKNESS,
+  NUM_STARS,
+} from "../config/galaxyConfig.js";
+import { gaussianRandom, spiral } from "../utils.js";
 
 let canvas,
   renderer,
@@ -146,6 +158,10 @@ async function render() {
   camera.aspect = canvas.clientWidth / canvas.clientHeight;
   camera.updateProjectionMatrix();
 
+  stars.forEach((star) => {
+    star.updateScale(camera);
+  });
+
   // Run each pass of the render pipeline
   renderPipeline();
 
@@ -170,29 +186,35 @@ initThree();
 let axes = new THREE.AxesHelper(5.0);
 scene.add(axes);
 
+let stars = [];
+
 let position = new THREE.Vector3(5.0, 5.0, 5.0);
 let star = new Star(position);
 star.toThreeObject(scene);
 
-function guassianRandom(mean = 0, stdev = 1) {
-  let u = 1 - Math.random();
-  let v = Math.random();
-  let z = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
-
-  return z * stdev + mean;
-}
-
-let mean = 0;
-let stdev = 20;
-
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < NUM_STARS / 2; i++) {
   let pos = new THREE.Vector3(
-    guassianRandom(mean, stdev),
-    guassianRandom(mean, stdev),
-    guassianRandom(mean, stdev)
+    gaussianRandom(0, CORE_X_DIST),
+    gaussianRandom(0, CORE_Y_DIST),
+    gaussianRandom(0, GALAXY_THICKNESS)
   );
   let star = new Star(pos);
   star.toThreeObject(scene);
+  stars.push(star);
+}
+
+for (let j = 0; j < ARMS; j++) {
+  for (let i = 0; i < NUM_STARS / 2; i++) {
+    let pos = spiral(
+      gaussianRandom(ARM_X_MEAN, ARM_X_DIST),
+      gaussianRandom(ARM_Y_MEAN, ARM_Y_DIST),
+      gaussianRandom(0, GALAXY_THICKNESS),
+      (j * 2 * Math.PI) / ARMS
+    );
+    let star = new Star(pos);
+    star.toThreeObject(scene);
+    stars.push(star);
+  }
 }
 
 requestAnimationFrame(render);
