@@ -1,5 +1,5 @@
 import { Vector3 } from "three";
-import { ARM_X_DIST, SPIRAL } from "./config/galaxyConfig.js";
+import { ARM_X_DIST, SPIRAL } from "/config/galaxyConfig.js";
 
 export function gaussianRandom(mean = 0, stdev = 1) {
   let u = 1 - Math.random();

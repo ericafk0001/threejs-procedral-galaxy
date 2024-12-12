@@ -3,12 +3,12 @@ import {
   HAZE_MAX,
   HAZE_MIN,
   HAZE_OPACITY,
-} from "../config/renderConfig.js";
-import { clamp } from "../utils.js";
+} from "/config/renderConfig.js";
+import { clamp } from "/utils.js";
 import * as THREE from "three";
 
 const hazeTexture = new THREE.TextureLoader().load(
-  "../resources/feathered60.png"
+  "/resources/feathered60.png"
 );
 const hazeSprite = new THREE.SpriteMaterial({
   map: hazeTexture,
