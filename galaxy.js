@@ -14,13 +14,25 @@ import {
   OUTER_CORE_Y_DIST,
 } from "../config/galaxyConfig.js";
 import { gaussianRandom, spiral } from "../utils.js";
+import { Haze } from "./haze.js";
 
 //galaxy class
 export class Galaxy {
   constructor(scene) {
     this.scene = scene;
     this.stars = this.generateStars();
+    this.haze = this.generateHaze();
     this.stars.forEach((star) => star.toThreeObject(scene));
+    this.haze.forEach((haze) => haze.toThreeObject(scene));
+  }
+  updateScale(camera) {
+    this.stars.forEach((star) => {
+      star.updateScale(camera);
+    });
+
+    this.haze.forEach((haze) => {
+      haze.updateScale(camera);
+    });
   }
   generateStars() {
     let stars = [];
@@ -54,6 +66,44 @@ export class Galaxy {
           (j * 2 * Math.PI) / ARMS
         );
         let star = new Star(pos);
+        stars.push(star);
+      }
+    }
+
+    return stars;
+  }
+  generateHaze() {
+    let stars = [];
+
+    for (let i = 0; i < NUM_STARS / 4; i++) {
+      let pos = new THREE.Vector3(
+        gaussianRandom(0, CORE_X_DIST),
+        gaussianRandom(0, CORE_Y_DIST),
+        gaussianRandom(0, GALAXY_THICKNESS)
+      );
+      let star = new Haze(pos);
+      stars.push(star);
+    }
+
+    for (let i = 0; i < NUM_STARS / 4; i++) {
+      let pos = new THREE.Vector3(
+        gaussianRandom(0, OUTER_CORE_X_DIST),
+        gaussianRandom(0, OUTER_CORE_Y_DIST),
+        gaussianRandom(0, GALAXY_THICKNESS)
+      );
+      let star = new Haze(pos);
+      stars.push(star);
+    }
+
+    for (let j = 0; j < ARMS; j++) {
+      for (let i = 0; i < NUM_STARS / 4; i++) {
+        let pos = spiral(
+          gaussianRandom(ARM_X_MEAN, ARM_X_DIST),
+          gaussianRandom(ARM_Y_MEAN, ARM_Y_DIST),
+          gaussianRandom(0, GALAXY_THICKNESS),
+          (j * 2 * Math.PI) / ARMS
+        );
+        let star = new Haze(pos);
         stars.push(star);
       }
     }

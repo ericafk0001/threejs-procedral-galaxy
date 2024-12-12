@@ -15,24 +15,8 @@ import { MapControls } from "three/addons/controls/OrbitControls.js";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
-
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
 import { Galaxy } from "./galaxy.js";
-import { Star } from "./star.js";
-import {
-  ARMS,
-  ARM_X_DIST,
-  ARM_X_MEAN,
-  ARM_Y_DIST,
-  ARM_Y_MEAN,
-  CORE_X_DIST,
-  CORE_Y_DIST,
-  GALAXY_THICKNESS,
-  NUM_STARS,
-  OUTER_CORE_X_DIST,
-  OUTER_CORE_Y_DIST,
-} from "../config/galaxyConfig.js";
-import { gaussianRandom, spiral } from "../utils.js";
 
 let canvas,
   renderer,
@@ -162,6 +146,10 @@ async function render() {
 
   galaxy.stars.forEach((star) => {
     star.updateScale(camera);
+  });
+
+  galaxy.haze.forEach((haze) => {
+    haze.updateScale(camera);
   });
 
   // Run each pass of the render pipeline
