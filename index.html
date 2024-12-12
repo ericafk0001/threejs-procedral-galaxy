@@ -23,7 +23,21 @@
     </script>
   </head>
   <body>
-    <canvas id="canvas" data-engine="three.js r146"></canvas>
+    <div id="canvas-container">
+      <div id="controls-div">
+        <h1>Procedural Galaxy</h1>
+        <a href="https://github.com/ericafk0001/threejs-procedral-galaxy"
+          >Source Code</a
+        >
+        <h2>Controls</h2>
+        <p>Left hold -> Move Camera</p>
+        <p>Right hold -> Pan Camera</p>
+        <p>Scroll Wheel -> Zoom in/out</p>
+        <p>M -> Toggle GUI</p>
+      </div>
+      <canvas id="canvas" data-engine="three.js r146"></canvas>
+    </div>
+    <script src="index.js"></script>
     <script src="main.js" type="module" async defer></script>
   </body>
 </html>
