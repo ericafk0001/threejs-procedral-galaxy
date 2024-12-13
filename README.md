@@ -4,7 +4,7 @@
 
 This project is a 3D visualization of a procedurally generated galaxy built using [Three.js](https://threejs.org/). The aim is to create an interactive and visually stunning galaxy simulation that showcases the capabilities of procedural generation and 3D rendering in modern web development. 🌌✨🌠
 
-![Galaxy Preview](link-to-preview-image) <!-- Replace with actual image or gif URL -->
+![Galaxy Preview](https://cloud-5ytd89bhb-hack-club-bot.vercel.app/0image.png) <!-- Replace with actual image or gif URL -->
 
 ## Features
 
@@ -63,10 +63,10 @@ The galaxy parameters can be modified directly in the JavaScript configuration f
 
 ## Screenshots
 
-![Screenshot 1](link-to-screenshot1)  
+![Screenshot 1](https://cloud-5ytd89bhb-hack-club-bot.vercel.app/0image.png)  
 _Caption: A zoomed-out view of the galaxy._ 🌌🖼️✨
 
-![Screenshot 2](link-to-screenshot2)  
+![Screenshot 2](https://cloud-c46buw4l2-hack-club-bot.vercel.app/0image.png)  
 _Caption: A close-up of a star cluster._ 🌟🔍💫
 
 ## License
@@ -76,7 +76,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 - [Three.js Documentation](https://threejs.org/docs/)
-- Inspiration from various 3D galaxy simulations online. 🌌🙏✨
+- Thank you to @TheScreamingFedora for setup ! 🌌🙏✨
 
 ---
 
