@@ -12,8 +12,8 @@ import {
   NUM_STARS,
   OUTER_CORE_X_DIST,
   OUTER_CORE_Y_DIST,
-} from "../config/galaxyConfig.js";
-import { gaussianRandom, spiral } from "../utils.js";
+} from "./config/galaxyConfig.js";
+import { gaussianRandom, spiral } from "./utils.js";
 import { Haze } from "./haze.js";
 
 //galaxy class
