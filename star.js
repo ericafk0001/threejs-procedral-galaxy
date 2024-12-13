@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { BLOOM_LAYER, STAR_MAX, STAR_MIN } from "./config/renderConfig.js";
 import { starTypes } from "./config/starDis.js";
-import { clamp } from "../utils.js";
+import { clamp } from "./utils.js";
 
 const texture = new THREE.TextureLoader().load("./resources/sprite120.png");
 const material = new THREE.SpriteMaterial({ map: texture, color: "#fff" });
